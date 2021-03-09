@@ -1,0 +1,3 @@
+name: jenkins
+tlssecret: home-tls
+hostname: jenkins.crazyzone.be
