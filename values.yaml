@@ -1,3 +1,8 @@
 name: jenkins
 tlssecret: home-tls
 hostname: jenkins.crazyzone.be
+namespace: jenkins
+namespaces:
+  - jenkins
+  - home
+  - operations
