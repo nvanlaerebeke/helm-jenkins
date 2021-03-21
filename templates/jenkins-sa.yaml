@@ -3,10 +3,10 @@ kind: ServiceAccount
 metadata:
   name: jenkins
 ---
-kind: Role
-apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: jenkins
+  name: job-master
 rules:
 - apiGroups: [""]
   resources: ["pods"]
@@ -23,15 +23,19 @@ rules:
 - apiGroups: [""]
   resources: ["secrets"]
   verbs: ["get"]
+{{- range $namespace := .Values.namespaces }}  
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: jenkins
+  name: jenkins-{ { $namespace } }
+  namespace: jenkins
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: jenkins
+  kind: ClusterRole
+  name: { { $namespace } }
 subjects:
 - kind: ServiceAccount
   name: jenkins
+  namespace: jenkins
+{{- end }}

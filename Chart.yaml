@@ -3,3 +3,7 @@ name: jenkins
 version: 0.0.1
 appVersion: 0.0.1
 description: Crazyzone's Jenkins
+namespaces:
+  - jenkins
+  - home
+  - operations
