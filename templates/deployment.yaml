@@ -36,6 +36,13 @@ spec:
           containerPort: 8080
         - name: jnlp-port
           containerPort: 50000          
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5          
         securityContext:
           allowPrivilegeEscalation: false
           runAsUser: 0
